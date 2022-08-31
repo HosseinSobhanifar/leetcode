@@ -1,0 +1,46 @@
+def hor(input, digit, i, j):
+    for k in range(9):
+        if digit == input[i][k] and k != j:
+            return False
+    return True
+
+
+def ver(input, digit, i, j):
+    for k in range(9):
+        if digit == input[k][j] and k != i:
+            return False
+    return True
+
+def squ(input, i, j, digit):
+    I = i // 3
+    J = j // 3
+    for m in range(I*3, 3 + (I*3)):
+        for n in range(J*3, 3 + (J * 3)):
+            if digit == input[m][n] and m != i and n != j:
+                return False
+    return True
+
+
+board = [[".", ".", ".", ".", "5", ".", ".", "1", "."],
+         [".", "4", ".", "3", ".", ".", ".", ".", "."],
+         [".", ".", ".", ".", ".", "3", ".", ".", "1"],
+         ["8", ".", ".", ".", ".", ".", ".", "2", "."],
+         [".", ".", "2", ".", "7", ".", ".", ".", "."],
+         [".", "1", "5", ".", ".", ".", ".", ".", "."],
+         [".", ".", ".", ".", ".", "2", ".", ".", "."],
+         [".", "2", ".", "9", ".", ".", ".", ".", "."],
+         [".", ".", "4", ".", ".", ".", ".", ".", "."]]
+
+for i in range(9):
+    for j in range(9):
+        if board[i][j] != ".":
+            number = board[i][j]
+            ans_h = hor(input=board, i=i, j=j, digit=number)
+            if ans_h == False:
+                print(f"(i, j) = ({i}, {j}), digit = {board[i][j]}")
+            ans_v = ver(input=board, i=i, j=j, digit=number)
+            if ans_v == False:
+                print(f"(i, j) = ({i}, {j}), digit = {board[i][j]}")
+            ans_s = squ(input=board, i=i, j=j, digit=number)
+            if ans_s == False:
+                print(f"(i, j) = ({i}, {j}), digit = {board[i][j]}")
