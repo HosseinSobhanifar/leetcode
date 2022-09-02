@@ -1,1 +1,44 @@
+s = "a"
+numRows = 2
+ans = ""
+group_1 = []
+group_2 = []
+final_ans = ""
 
+for i in range(len(s)):
+    if i % (numRows + numRows - 2) == 0:
+        # if len(s[i:i + (2 * numRows - 2)]) != 2 * numRows - 2:
+        added_spaces = (2 * numRows - 2) - len(s[i:i + (2 * numRows - 2)])
+        x = s[i:i + (2 * numRows - 2)] + (" " * added_spaces)
+        group_1.append(x)
+
+print(f"group_1 = {group_1}")
+
+for i in range(len(group_1)):
+    word = group_1[i]
+    a = word[:numRows]
+    b = word[numRows:]
+    b = b[::-1]
+    b = " " + b + " "
+    # print(f"a = {a}")
+    # print(f"b = {b}")
+    new = list(map(lambda x, y: x + y, a, b))
+    group_2.append(new)
+group_3 = list(zip(*group_2))
+
+for i in range(len(group_3)):
+    temp = group_3[i]
+    print(temp)
+    for j in range(len(temp)):
+        ans += temp[j]
+print(ans)
+ans = ans.translate({ord(' '): None})
+print(ans)
+
+# for char in ans:
+#     if char == " ":
+#         pass
+#     else:
+#       final_ans += char
+#
+# print(final_ans)
