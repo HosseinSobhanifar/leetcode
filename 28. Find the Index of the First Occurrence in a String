@@ -1,0 +1,42 @@
+class Solution(object):
+    def strStr(self, haystack, needle):
+        """
+        :type haystack: str
+        :type needle: str
+        :rtype: int
+        """
+
+        l = needle[0]
+        l_count = haystack.count(l)
+        if l_count == 0:
+            return -1
+        length = len(needle)
+
+        i = 0
+        indices_first = []
+        idx = 0
+
+        while i < l_count:
+            if i == 0:
+                idx = haystack.index(l)
+
+            else:
+                idx = haystack.index(l, idx+1)
+
+            indices_first.append(idx)
+            i += 1
+
+
+
+        i = 0
+        while i < l_count:
+            start = indices_first[i]
+            end = start + length
+            if haystack[start:end] == needle:
+                ans = start
+                break
+            i += 1
+            if i == l_count:
+                ans = -1
+
+        return(ans)
