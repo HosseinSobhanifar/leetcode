@@ -46,7 +46,7 @@ class Solution(object):
                 if valid(A):
                     ans.append("".join(A))
             else:                               # this loop is pretty important
-                A.append('(')
+                A.append('(')                   # when the functon is called twice inside the function, the analysis will be hard.
                 generate(A)
                 A.pop()
                 A.append(')')
