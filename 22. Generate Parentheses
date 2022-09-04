@@ -1,0 +1,66 @@
+def para(input):
+    if input == 1:
+        return ["()"]
+    else:
+        ans = []
+        x = para(input - 1)
+        for i in x:
+            for j in range(len(i)):
+                temp = "(" + i[0:j] + ")" + i[j:]
+                if temp not in ans:
+                    ans.append(temp)
+        return ans
+        
+
+print(para(3))
+# ------------------------------------------------------ putting the code in  a calss ---------------------------------------------------------------------
+
+class Solution(object):
+    def generateParenthesis(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+
+
+        if n == 1:
+            return ["()"]
+        else:
+            ans = []
+            x = self.generateParenthesis(n - 1)
+            for i in x:
+                for j in range(len(i)):
+                    temp = "(" + i[0:j] + ")" + i[j:]
+                    if temp not in ans:
+                        ans.append(temp)
+            return ans
+
+
+solution = Solution()
+print(solution.generateParenthesis(n=2))
+# ------------------------------------------------------ brute force by Leetcode ---------------------------------------------------------------------
+class Solution(object):
+    def generateParenthesis(self, n):
+        def generate(A = []):
+            if len(A) == 2*n:
+                if valid(A):
+                    ans.append("".join(A))
+            else:                               # this loop is pretty important
+                A.append('(')
+                generate(A)
+                A.pop()
+                A.append(')')
+                generate(A)
+                A.pop()
+
+        def valid(A):
+            bal = 0
+            for c in A:
+                if c == '(': bal += 1
+                else: bal -= 1
+                if bal < 0: return False
+            return bal == 0
+
+        ans = []
+        generate()
+        return ans
