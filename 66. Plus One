@@ -1,0 +1,37 @@
+class Solution(object):
+    def plusOne(self, digits):
+        """
+        :type digits: List[int]
+        :rtype: List[int]
+        """
+        carry = 0
+        digits = digits[::-1]
+        for i in range(len(digits)):
+            digit = digits[i]
+            if i == 0:
+                digit = digit + 1 + carry
+
+                if digit <= 9:
+                    digits[i] = digit
+                    carry = 0
+                    return(digits[::-1])
+                    break
+                else:
+                    digits[i] = digit - 10
+                    carry = 1
+                    continue
+            if carry == 1:
+                digit = digit + carry
+                if digit <= 9:
+                    digits[i] = digit
+                    carry = 0
+                    return(digits[::-1])
+                    break
+                else:
+                    digits[i] = digit - 10
+                    carry = 1
+
+        digits.append(carry)
+        return(digits[::-1])
+
+                
