@@ -1,0 +1,40 @@
+a = "10"
+a = list(a)
+b = "111"
+b = list(b)
+ans = ""
+carry = 0
+
+
+def binary_S(integer_1, integer_2, carry):
+    sum = integer_1 + integer_2 + carry
+    c = sum // 2
+    result = sum % 2
+    return str(result), c
+
+
+is_on = True
+while is_on:
+    if len(a) != 0 and len(b) != 0:
+        integer_1 = int(a[-1])
+        integer_2 = int(b[-1])
+        a.pop(-1)
+        b.pop(-1)
+        result, carry = binary_S(integer_1=integer_1, integer_2=integer_2, carry=carry)
+        ans += result
+    elif len(a) != 0 and len(b) == 0:
+        integer_1 = int(a[-1])
+        a.pop(-1)
+        result, carry = binary_S(integer_1=integer_1, integer_2=0, carry=carry)
+        ans += result
+    elif len(a) == 0 and len(b) != 0:
+        integer_2 = int(b[-1])
+        b.pop(-1)
+        result, carry = binary_S(integer_1=0, integer_2=integer_2, carry=carry)
+        ans += result
+    elif len(a) == 0 and len(b) == 0 and carry != 0:
+        ans += str(carry)
+        is_on = False
+    else:
+        is_on = False
+print(ans[::-1])
