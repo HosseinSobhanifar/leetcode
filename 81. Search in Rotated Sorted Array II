@@ -1,0 +1,47 @@
+class Solution(object):
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: bool
+        """
+        def modified_binarySearch(arr, start, end, number):
+                    mid = ((end - start) // 2) + start
+
+                    if arr[mid] == number:
+                        return mid
+
+                    elif arr[start] > number > arr[end]:
+                        return -1
+
+                    elif end == start:
+                        return -1
+
+                    elif arr[start] <= number < arr[mid]:
+                        return modified_binarySearch(arr, start, mid, number)
+
+                    elif arr[mid] < number <= arr[end]:
+                        return modified_binarySearch(arr, mid + 1, end, number)
+
+                    elif arr[start] <= arr[mid] and arr[mid] > arr[end]:
+
+                        return modified_binarySearch(arr, mid + 1, end, number)
+
+                    elif arr[start] >= arr[mid] and arr[mid] < arr[end]:
+
+                        return modified_binarySearch(arr, start, mid, number)
+                    
+                    elif len(set(nums[start:mid + 1])) == 1:
+                        return modified_binarySearch(arr, mid + 1, end, number)
+
+                    elif len(set(nums[mid:end+1])) == 1:
+                        return modified_binarySearch(arr, start, mid, number)
+
+                    else:
+                        return -1
+
+        x = modified_binarySearch (nums, 0, len(nums) - 1, target)
+        if x != -1:
+            return True
+        else:
+            return False
