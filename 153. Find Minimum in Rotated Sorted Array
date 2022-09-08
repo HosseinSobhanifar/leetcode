@@ -1,0 +1,28 @@
+class Solution(object):
+    def findMin(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        start = 0
+        end = len(nums) - 1
+
+        while start <= end:
+            mid = (end - start) // 2 + start
+            
+            if mid != 0 and nums[mid] < nums [mid - 1]:
+                return(nums[mid])
+                        
+            
+            elif end == start:
+                return(nums[start])
+                break
+
+            elif nums[mid] > nums[end]:
+                start = mid + 1
+
+            else:
+                end = mid - 1
+                if end < start:
+                    return(nums[start])
+                    break
