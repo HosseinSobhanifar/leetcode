@@ -46,3 +46,7 @@ print(missingNumber(nums))
 def missingNumber(self, nums):
     n = len(nums)
     return reduce(operator.xor, nums) ^ [n, 1, n+1, 0][n % 4]
+# ----------------------------------------------------------------------- LeetCode ----------------------------------------------------------------------------
+
+def missingNumber(self, nums):
+    return (set(range(len(nums)+1)) - set(nums)).pop()
