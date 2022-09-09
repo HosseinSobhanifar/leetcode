@@ -36,7 +36,7 @@ my_list = nums + list(range(len(nums) + 1))
 
 
 def missingNumber(nums):
-    return reduce(operator.xor, my_list)
+    return functools.reduce(operator.xor, my_list)
 
 
 print(missingNumber(nums))
