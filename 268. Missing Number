@@ -45,7 +45,7 @@ print(missingNumber(nums))
 
 def missingNumber(self, nums):
     n = len(nums)
-    return reduce(operator.xor, nums) ^ [n, 1, n+1, 0][n % 4]
+    return reduce(operator.xor, nums) ^ [n, 1, n+1, 0][n % 4]    # If the array is in order,  Binary Search method is preferable. Otherwise, the XOR method is better.
 # ----------------------------------------------------------------------- LeetCode ----------------------------------------------------------------------------
 
 def missingNumber(self, nums):
