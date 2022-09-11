@@ -5,3 +5,82 @@ class Solution(object):
         :rtype: int
         """
         return(len(s.split()[-1]))
+# -------------------------------------------------------------------------- Another Solution -----------------------------------------------------------------------
+
+class Solution(object):
+    def lengthOfLastWord(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        s = s[::-1]
+        i = 0
+        is_on = True
+        while is_on:
+            if s[i] != " ":
+                j = 0
+                while True:
+                    if s[i+j] != " ":
+                        j += 1
+                        if i+j == len(s):
+                            is_on = False
+                            return(j)
+                    else:
+                        is_on = False
+                        return (j)
+                pass
+            i += 1
+        # print(j)
+# -------------------------------------------------------------------------- Another Solution -----------------------------------------------------------------------
+
+class Solution(object):
+    def lengthOfLastWord(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        i = len(s) - 1
+        is_on = True
+        while is_on:
+            if s[i] != " ":
+                j = 0
+                while True:
+                    if i != -1 and s[i] != " ":
+                        j += 1
+                        i -= 1
+
+                    else:
+                        is_on = False
+                        return(j)
+                pass
+            i -= 1
+# -------------------------------------------------------------------------- Another Solution -----------------------------------------------------------------------
+
+
+class Solution(object):
+    def lengthOfLastWord(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        i = len(s) - 1
+        is_on = True
+        
+        while is_on:
+            if s[i] != " ":
+                break
+            i -= 1
+        
+        j = 0        
+        while True:
+            if i != -1 and s[i] != " ":
+                j += 1
+                i -= 1
+
+            else:
+                is_on = False
+                return(j)
+        pass
+            
+
+        
