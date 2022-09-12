@@ -1,0 +1,24 @@
+import copy
+nums = [1, 2, 3]
+
+
+def F(nums):
+    if len(nums) == 2:
+        return [nums, nums[::-1]]
+
+    else:
+        my_list = []
+        for i in nums:
+
+            temp = copy.deepcopy(nums)
+            temp.remove(i)
+            ans = F(temp)
+            for j in ans:
+                x = [i] + j
+
+                my_list.append(x)
+        return my_list
+
+
+answer = F(nums)
+print(answer)
