@@ -22,3 +22,25 @@ def F(nums):
 
 answer = F(nums)
 print(answer)
+# ---------------------------------------------------------------------------------------------------------
+import copy
+nums = [1, 2]
+ans = []
+
+
+def f(s, rsl):
+    if not s:
+        temp = copy.deepcopy(rsl)  # Ihave to use this code
+        ans.append(temp)
+        # print(f"rsl={rsl}")
+
+    else:
+        for num in s:
+            idx = s.index(num)
+            rsl.append(num)
+            f(s[:idx] + s[idx + 1:], rsl)
+            rsl.pop(-1)
+
+
+f(s=nums, rsl=[])
+print(ans)
