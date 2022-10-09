@@ -1,0 +1,58 @@
+digits = "9"
+start = ord("a")
+letters = []
+for digit in digits:
+    temp = []
+    coe = int(digit) - 2
+    coe *= 3
+    if digit < "7":
+        for i in range(start + coe, start + coe + 3):
+            temp.append(chr(i))
+    elif digit == "7":
+        for i in range(start + coe, start + coe + 4):
+            temp.append(chr(i))
+    elif digit == "8":
+        for i in range(start + coe + 1, start + coe + 4):
+            temp.append(chr(i))
+    else:
+        for i in range(start + coe + 1, start + coe + 5):
+            temp.append(chr(i))
+
+    letters.append(temp)
+print(f"letters = {letters}")
+length = len(letters)
+
+
+def phone(letters, ans, comb, stage):
+    if stage == 0:
+        return ""
+    print("----------------------------------")
+    letter_set = letters[length-stage]
+    stage -= 1
+    print(f"letter_set={letter_set}")
+    for letter in letter_set:
+        print(f"letter={letter}")
+        ans += letter
+        print(f"ans = {ans}")
+        if stage != 0:
+            phone(letters, ans, comb, stage)
+            ans.pop()
+        else:
+            # comb = []
+            # comb = comb + ans                            # the point is here
+            # comb.append(ans)                             # the point is here
+            # -----------------------------
+            # comb.extend(x[:] for x in [ans])             # the point is here
+            # print(f"comb={comb}")
+            ans_str = ""
+            for j in ans:
+                ans_str += j
+            comb.append(ans_str)
+            ans.pop()
+        # ans.pop()
+
+
+comb = []
+phone(letters=letters, ans=[], comb=comb, stage=length)
+print(f"comb={comb}")
+
