@@ -1,0 +1,39 @@
+class Solution(object):
+    def maximumEvenSplit(self, finalSum):
+        """
+        :type finalSum: int
+        :rtype: List[int]
+        """
+        
+        if finalSum % 2 != 0:
+            return []
+        # ----------------------------
+        def adder(inp):
+            return inp * (inp + 1)
+
+
+        def binary(srt, end, inp):
+            mid = (end - srt) // 2 + srt
+            if inp > adder(mid):
+                return mid, end
+            elif inp < adder(mid):
+                return srt, mid
+            else:
+                return mid, mid
+
+
+        srt = 0
+        end = finalSum // 2
+        while True:
+            if (end - srt) // 2 == 0:
+                break
+            srt, end = binary(srt, end, finalSum)
+
+        ans = []
+
+        for i in range(srt-1):
+            ans.append(2*(i+1))
+        last = finalSum-sum(ans)
+        ans.append(last)
+        return ans
+        
