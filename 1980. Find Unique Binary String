@@ -1,0 +1,48 @@
+nums = ["111", "011", "001"]
+length = len(nums[0])
+final_ans = []
+
+
+def binary(temp):
+    for i in range(2):
+        temp += f"{i}"                          # this syntax does not work at LeetCode
+        if len(temp) < length:
+          binary(temp)
+                
+
+        else:
+            if temp not in nums:
+              final_ans.append(temp)           # obtains all the possible solution
+                
+
+        temp = temp[:-1]
+
+
+temp = ""
+binary(temp=temp)
+print(final_ans)
+# ---------------------------------------------------------------------------------------------------
+
+nums = ["111", "011", "001"]
+length = len(nums[0])
+final_ans = []
+
+
+def binary(temp):
+    for i in ["0", "1"]:
+        temp += i
+        if len(temp) < length:
+            if binary(temp):
+                return True
+
+        else:
+            if temp not in nums:
+                final_ans.append(temp)
+                return True                 # this terminates the function as soon as it yileds the first possible solution
+
+        temp = temp[:-1]
+
+
+temp = ""
+binary(temp=temp)
+print(final_ans[0])
