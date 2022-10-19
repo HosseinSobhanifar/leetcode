@@ -1,0 +1,91 @@
+# this code is not optimized
+pos = []
+
+def finder(i, R, C, pos):
+    if i == len(word):                       # the end of the journey
+        return True
+
+    for row in range(len(board)):
+        for column in range(len(board[0])):
+            if board[row][column] == word[i] and [row, column] not in pos:
+                pos.append([row, column])
+
+                if i == 0:
+                    if finder(i + 1, row, column, pos):               # going to the next stage
+                        return True
+
+                elif abs(row - R) == 1 and column == C or abs(column - C) == 1 and row == R:
+                    if finder(i + 1, row, column, pos):
+                        return True
+                pos.pop()
+
+    if i >= 1:                                # backtracking
+        return
+
+    if i == 0:                                   # the end of the journey
+        return False
+
+
+i = 0
+print(finder(i=i, R=None, C=None, pos=pos))
+print(f"pos = {pos}")
+# ------------------------------------------------------------------------------------------------------------------------------------
+
+this code is optimized
+
+pos = []
+
+def finder(i, R, C, pos):
+    print("----------------------------------")
+    print(f"i = {i}")
+
+    print(f"pos = {pos}")
+
+    if i == len(word):
+        print(f"i = {i}")
+        print(f"pos = {pos}")
+        return True
+    print(f"word[i] = {word[i]}")
+    if i == 0:
+        for row in range(len(board)):
+            for column in range(len(board[0])):
+                if board[row][column] == word[i]:
+                    pos.append([row, column])
+                    if finder(i + 1, row, column, pos):
+                        return True
+                    pos.pop()
+
+    if R + 1 < len(board) and board[R + 1][C] == word[i] and [R + 1, C] not in pos:
+        pos.append([R + 1, C])
+        if finder(i + 1, R + 1, C, pos):
+            return True
+        pos.pop()
+
+    if R - 1 >= 0 and board[R - 1][C] == word[i] and [R - 1, C] not in pos:
+        pos.append([R - 1, C])
+        if finder(i + 1, R - 1, C, pos):
+            return True
+        pos.pop()
+
+    if C+1 < len(board[0]) and board[R][C+1] == word[i] and [R, C + 1] not in pos:
+        pos.append([R, C+1])
+        if finder(i + 1, R, C + 1, pos):
+            return True
+        pos.pop()
+
+    if C - 1 >= 0 and board[R][C - 1] == word[i] and [R, C - 1] not in pos:
+        pos.append([R, C - 1])
+        if finder(i + 1, R, C - 1, pos):
+            return True
+        pos.pop()
+
+    if i >= 1:
+        return
+
+    if i == 0:
+        return False
+
+i = 0
+print(finder(i=i, R=0, C=0, pos=pos))
+print(f"pos = {pos}")
+
